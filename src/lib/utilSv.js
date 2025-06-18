@@ -1,5 +1,7 @@
 "use server";
 
+import { getConfig } from "@/lib/admin/config-actions";
+
 export async function isLocalConnect() {
   try {
     const { useLocal } = await getConfig();
