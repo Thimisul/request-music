@@ -99,10 +99,6 @@ export async function uploadLogo(formData) {
 
     await removeCurrentLogo();
 
-    if (!fs.existsSync(LOGO_DIR)) {
-      fs.mkdirSync(LOGO_DIR, { recursive: true });
-    }
-
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
