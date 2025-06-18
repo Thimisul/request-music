@@ -61,7 +61,11 @@ export async function uploadLogo(formData) {
   try {
     const file = formData.get("logo");
 
-    if (!file || !(file instanceof File)) {
+    if (
+      !formData ||
+      typeof formData !== "object" ||
+      typeof formData.get !== "function"
+    ) {
       return {
         success: false,
         error: "Nenhum arquivo válido enviado",
@@ -88,6 +92,10 @@ export async function uploadLogo(formData) {
         success: false,
         error: "Arquivo muito grande. Máximo 5MB",
       };
+    }
+
+    if (!fs.existsSync(LOGO_DIR)) {
+      fs.mkdirSync(LOGO_DIR, { recursive: true });
     }
 
     await removeCurrentLogo();
