@@ -1,7 +1,12 @@
 import fs from "fs/promises";
 import path from "path";
 
-const configFile = path.join(process.cwd(), "data", "config.json");
+const CONFIG_DIR =
+  process.env.NODE_ENV === "production"
+    ? "/tmp"
+    : path.join(process.cwd(), "public");
+
+const configFile = path.join(CONFIG_DIR, "data", "config.json");
 
 export async function saveConfig(config) {
   console.log("Saving config:", config);
