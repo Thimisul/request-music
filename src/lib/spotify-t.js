@@ -8,7 +8,7 @@ const STORAGE_PATH =
     ? "/app/storage"
     : path.join(process.cwd(), "storage");
 
-const tokenFile = path.join(STORAGE_PATH, "data", "spotify-token.json");
+const tokenFile = path.join(STORAGE_PATH, "spotify-token.json");
 
 export async function saveToken(token) {
   await fs.writeFile(tokenFile, JSON.stringify(token, null, 2), "utf-8");
