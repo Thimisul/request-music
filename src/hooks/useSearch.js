@@ -57,7 +57,7 @@ export function useSearch(showNotification, fetchQueue) {
     } catch (error) {
       showNotification("Erro de conexão ao adicionar música", "error");
     } finally {
-      setTimeout(() => fetchQueue(), 200);
+      setTimeout(() => fetchQueue(), 400);
       setTimeout(() => setAddingTrack(null), 500);
     }
   };

@@ -10,9 +10,7 @@ export default async function AdminPage() {
   return (
     <AdminAccessGuard>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-        {/* Coluna da esquerda */}
         <div className="flex flex-col gap-8">
-          {/* Admin Spotify */}
           <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20 h-fit shadow-xl">
             <h1 className="text-3xl font-bold mb-6 text-center text-green-100">
               🎧 Admin Spotify
@@ -48,13 +46,11 @@ export default async function AdminPage() {
             )}
           </div>
 
-          {/* Config */}
           <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20 h-fit shadow-xl">
             <Config />
           </div>
         </div>
 
-        {/* Coluna da direita */}
         <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20 h-fit shadow-xl">
           <LogoUpload />
         </div>
