@@ -1,0 +1,6 @@
+/.next
+/node_modules
+.env
+/data/spotify-token.json
+/data/config.json
+/public/logo.png
