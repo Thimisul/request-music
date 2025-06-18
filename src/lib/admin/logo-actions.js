@@ -5,7 +5,10 @@ import fs from "fs";
 import path from "path";
 
 const LOGO_FILENAME = "logo";
-const LOGO_DIR = path.join(process.cwd(), "public");
+const LOGO_DIR =
+  process.env.NODE_ENV === "production"
+    ? "/tmp"
+    : path.join(process.cwd(), "public");
 
 export async function getCurrentLogo() {
   try {
