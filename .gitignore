@@ -1,6 +1,6 @@
 /.next
 /node_modules
 .env
-/data/spotify-token.json
-/data/config.json
+/storage/spotify-token.json
+/storage/config.json
 /public/logo.png

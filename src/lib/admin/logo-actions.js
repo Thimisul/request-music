@@ -5,14 +5,14 @@ import fs from "fs";
 import path from "path";
 
 const LOGO_FILENAME = "logo";
-const LOGO_DIR =
+const STORAGE_PATH =
   process.env.NODE_ENV === "production"
-    ? "/tmp"
-    : path.join(process.cwd(), "public");
+    ? "/app/storage"
+    : path.join(process.cwd(), "storage");
 
 export async function getCurrentLogo() {
   try {
-    const logoDir = LOGO_DIR;
+    const logoDir = STORAGE_PATH;
     const files = fs.readdirSync(logoDir);
 
     const logoFile = files.find(
@@ -38,7 +38,7 @@ export async function getCurrentLogo() {
 
 async function removeCurrentLogo() {
   try {
-    const logoDir = LOGO_DIR;
+    const logoDir = STORAGE_PATH;
     const files = fs.readdirSync(logoDir);
 
     // Encontrar e remover logo atual
@@ -97,11 +97,11 @@ export async function uploadLogo(formData) {
       };
     }
 
+    await removeCurrentLogo();
+
     if (!fs.existsSync(LOGO_DIR)) {
       fs.mkdirSync(LOGO_DIR, { recursive: true });
     }
-
-    await removeCurrentLogo();
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
@@ -114,7 +114,7 @@ export async function uploadLogo(formData) {
     else if (file.type === "image/webp") extension = ".webp";
 
     const filename = LOGO_FILENAME + extension;
-    const filepath = path.join(LOGO_DIR, filename);
+    const filepath = path.join(STORAGE_PATH, filename);
 
     fs.writeFileSync(filepath, buffer);
 

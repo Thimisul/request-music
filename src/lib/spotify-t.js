@@ -3,7 +3,12 @@
 import fs from "fs/promises";
 import path from "path";
 
-const tokenFile = path.join(process.cwd(), "data", "spotify-token.json");
+const STORAGE_PATH =
+  process.env.NODE_ENV === "production"
+    ? "/app/storage"
+    : path.join(process.cwd(), "storage");
+
+const tokenFile = path.join(STORAGE_PATH, "data", "spotify-token.json");
 
 export async function saveToken(token) {
   await fs.writeFile(tokenFile, JSON.stringify(token, null, 2), "utf-8");
