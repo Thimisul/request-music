@@ -82,7 +82,11 @@ export default function LogoManager() {
     try {
       const formData = new FormData();
       formData.append("logo", selectedFile);
-      const result = await uploadLogo(formData);
+      const res = await fetch("/api/v1/config/upload-logo", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await res.json();
       if (result.success) {
         setCurrentLogo({
           exists: true,
